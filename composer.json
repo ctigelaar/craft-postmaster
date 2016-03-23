@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"nesbot/Carbon": "*"
+		"nesbot/Carbon": "1.13.0"
 	},
 	"config": {
 		"preferred-install": "dist"
