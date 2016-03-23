@@ -11,6 +11,7 @@ class Postmaster_QueueRecord extends BaseRecord
     protected function defineAttributes()
     {
         return array(
+            'entryId'  => array(AttributeType::Number, 'column' => ColumnType::Int),
             'model'  => array(AttributeType::Mixed, 'column' => ColumnType::LongText),
             'sendDate'  => array(AttributeType::Mixed, 'column' => ColumnType::LongText),
         );

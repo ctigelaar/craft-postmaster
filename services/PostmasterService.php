@@ -6,11 +6,11 @@ class PostmasterService extends BaseApplicationComponent
 	protected $_services = array();
 
 	protected $_servicesIds = array();
-	
+
 	protected $_parcelTypes = array();
 
 	protected $_parcelTypesIds = array();
-	
+
 	protected $_notificationTypes = array();
 
 	protected $_notificationTypesIds = array();
@@ -85,6 +85,7 @@ class PostmasterService extends BaseApplicationComponent
     	$record = new Postmaster_QueueRecord();
     	$record->model = $model;
 		$record->sendDate = $model->getSendDate();
+        $record->entryId = $model->getEntryId();
 		$record->save();
 
 		// set the queue record id to the Postmaster_TransportModel object
@@ -95,7 +96,7 @@ class PostmasterService extends BaseApplicationComponent
 		return new Postmaster_TransportResponseModel(array(
 			'service' => $model->service,
 			'model' => $model
-		)); 
+		));
     }
 
     /*
@@ -119,7 +120,7 @@ class PostmasterService extends BaseApplicationComponent
 		{
 			craft()->postmaster_queue->remove($model->queueId);
 		}
-		
+
     	//Validate the model to see if the send past has not past
     	if($model->shouldSend())
     	{
@@ -129,7 +130,7 @@ class PostmasterService extends BaseApplicationComponent
 	        	// Send the Postmaster_TransportModel model to the service in
 	        	// exchange for a Postmaster_TransportResponseModel object
 	            $response = $model->service->send($model);
-	           	
+
 	           	// Test the service response for correct class and throw an error if it fails
 	           	if(!$response instanceof \Craft\Postmaster_TransportResponseModel)
 	           	{

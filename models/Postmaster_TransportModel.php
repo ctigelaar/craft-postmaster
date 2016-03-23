@@ -39,6 +39,15 @@ class Postmaster_TransportModel extends BaseModel implements TransportInterface
 		$this->data = $data;
 	}
 
+    public function getEntryId()
+    {
+        if($entry = $this->getData('entry')) {
+            return $entry->id;
+        }
+
+        return null;
+    }
+
 	public function getSendDate()
 	{
 		if(!$this->sendDate || is_string($this->sendDate))
